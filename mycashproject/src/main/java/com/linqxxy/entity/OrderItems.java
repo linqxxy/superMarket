@@ -10,7 +10,7 @@ public class OrderItems {
     private String goodsName;
     private String goodsIntroduce;
     private Integer goodsNum;
-    private String foodUnit;
+    private String goodUnit;
     private Integer goodsPrice;
     private Integer goodDiscount;
 }

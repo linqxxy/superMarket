@@ -1,5 +1,8 @@
 package com.linqxxy.common;
 
+import lombok.ToString;
+
+@ToString
 public enum AccountType {
     ADMIN(1,"管理员"),CUSTOMER(2,"顾客");
     private int flag;

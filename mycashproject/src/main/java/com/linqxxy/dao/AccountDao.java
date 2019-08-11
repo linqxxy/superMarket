@@ -86,4 +86,59 @@ public class AccountDao extends BaseDao {
             this.closeResource(rs,statement,conn);
         }
     }
+
+    public List<Account> browseAccount() {
+        List<Account> accountList=new ArrayList<>();
+        try{
+            conn=this.getConnection(true);
+            String sql="select * from account";
+            statement=conn.prepareStatement(sql);
+            rs=statement.executeQuery();
+            while (rs.next()){
+                Account account=this.extractAccount(rs);
+                accountList.add(account);
+            }
+            return accountList;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return  null;
+        }finally {
+            this.closeResource(rs,statement,conn);
+        }
+    }
+
+    public Account getAccountByPassword(String password) {
+        Account account=null;
+        try {
+            conn=this.getConnection(true);
+            String sql="select * from account where password=?";
+            statement=conn.prepareStatement(sql);
+            statement.setString(1,DigestUtils.md5Hex(password));
+            rs=statement.executeQuery();
+            while (rs.next()){
+               account=this.extractAccount(rs);
+            }
+            return account;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return account;
+        }finally {
+            this.closeResource(rs,statement,conn);
+        }
+    }
+
+    public boolean updatePassword(String newPassword, Account account) {
+        try {
+            conn=this.getConnection(true);
+            String sql="update account set password= ? where id=?";
+            statement=conn.prepareStatement(sql);
+            statement.setString(1,DigestUtils.md5Hex(newPassword));
+            statement.setInt(2,account.getId());
+            return statement.executeUpdate()==1;
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -1,5 +1,10 @@
 package com.linqxxy.common;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public enum OrderStatus {
     PLAYING(1,"待支付"),OK(2,"支付完成");
     private int flg;
@@ -8,7 +13,7 @@ public enum OrderStatus {
         this.flg = flg;
         this.desc = desc;
     }
-    public OrderStatus valueOf(int flg) {
+    public static OrderStatus valueOf(int flg) {
         for (OrderStatus orderStatus : values()) {
             if(orderStatus.flg == flg) {
                 return orderStatus;

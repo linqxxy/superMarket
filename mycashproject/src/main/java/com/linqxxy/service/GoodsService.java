@@ -30,4 +30,8 @@ public class GoodsService {
     public boolean deleteGoods(int goodsId) {
         return goodsDao.deleteGoods(goodsId);
     }
+
+    public boolean updateAfterPay(Goods goods, Integer buyGoodsNum) {
+        return this.goodsDao.updateAfterPay(goods,buyGoodsNum);
+    }
 }
