@@ -11,6 +11,23 @@ public enum AccountType {
         this.flag=flag;
         this.desc=desc;
     }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public static AccountType valueOf(int flag){
         for(AccountType accountType:values()){
             if (accountType.flag==flag){

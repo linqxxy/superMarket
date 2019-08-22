@@ -141,4 +141,38 @@ public class AccountDao extends BaseDao {
             return false;
         }
     }
+
+    public Account getAccountById(int id) {
+        Account account=new Account();
+        try{
+            conn=this.getConnection(true);
+            String sql="select * from account where id=?";
+            statement=conn.prepareStatement(sql);
+            statement.setInt(1,id);
+            rs=statement.executeQuery();
+            while (rs.next()){
+             account=this.extractAccount(rs);
+            }
+            return account;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean updateAcccount(Account account) {
+        try {
+            conn=this.getConnection(true);
+            String sql="update account set account_type=?,account_status=? where id=?";
+            statement=conn.prepareStatement(sql);
+            statement.setInt(1,account.getAccountType().getFlag());
+            statement.setInt(2,account.getAccountStatus().getFlag());
+            statement.setInt(3,account.getId());
+            return statement.executeUpdate()==1;
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

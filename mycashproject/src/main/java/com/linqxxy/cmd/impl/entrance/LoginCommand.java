@@ -29,11 +29,12 @@ public class LoginCommand extends AbstractCommand {
                 if (account.getAccountStatus() == AccountStatus.LOCK) {
                     System.out.println("您的账号涉嫌违规操作，已被暂停使用");
                 } else {
-                    System.out.println(account.getAccountType() + "登陆成功");
+                    System.out.println(account.getAccountType().getDesc() + "登陆成功");
                     subject.setAccount(account);
+                    print("按下回车进入功能菜单");
                 }
             } else {
-                System.out.println("密码或者用户名错误");
+                System.out.println("密码或者用户名错误，按下回车后返回重试");
             }
         }
     }

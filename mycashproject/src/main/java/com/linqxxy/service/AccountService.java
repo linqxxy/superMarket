@@ -31,4 +31,12 @@ public class AccountService {
     public boolean updatePassword(String newPassword, Account account) {
         return accountDao.updatePassword(newPassword,account);
     }
+
+    public Account getAccountById(int id) {
+        return accountDao.getAccountById(id);
+    }
+
+    public boolean updateAcccount(Account account) {
+        return accountDao.updateAcccount(account);
+    }
 }

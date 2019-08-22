@@ -62,6 +62,9 @@ public class Commands {
             CommandMeta commandMeta = cls.getDeclaredAnnotation(
                     CommandMeta.class
             );
+            if (commandMeta==null){
+                continue;
+            }
             String commandKey = commandMeta.name();
             if (adminCommand != null) {
                 ADMIN_COMMANDS.put(commandKey, command);
